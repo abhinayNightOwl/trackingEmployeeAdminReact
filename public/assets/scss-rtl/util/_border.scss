@@ -1,0 +1,149 @@
+.border {
+	border: 1px solid $border !important;
+  }
+  
+  .border-top {
+	border-top: 1px solid $border !important;
+  }
+  
+  .border-right {
+	border-right: 1px solid $border !important;
+  }
+  
+  .border-bottom {
+	border-bottom: 1px solid $border !important;
+  }
+  
+  .border-left {
+	border-left: 1px solid $border !important;
+  }
+  
+  .border-0 {
+	border: 0 !important;
+  }
+  
+  .border-top-0 {
+	border-top: 0 !important;
+  }
+  
+  .border-right-0 {
+	border-right: 0 !important;
+  }
+  
+  .border-bottom-0 {
+	border-bottom: 0 !important;
+  }
+  
+  .border-left-0 {
+	border-left: 0 !important;
+  }
+  
+  .border-success {
+	border-color: #4ecc48 !important;
+  }
+  
+  .border-info {
+	border-color: #45aaf2 !important;
+  }
+  
+  .border-warning {
+	border-color: #ecb403 !important;
+  }
+  
+  .border-danger {
+	border-color: #c21a1a !important;
+  }
+  
+  .border-light {
+	border-color: #e7e9f5 !important;
+  }
+  
+  .border-dark {
+	border-color: $dark !important;
+  }
+  
+  .border-white {
+	border-color: $white !important;
+  }
+  
+  .rounded {
+	border-radius: 0px !important;
+  }
+  
+  .rounded-top {
+	border-top-left-radius: 4px !important;
+	border-top-right-radius: 4px !important;
+  }
+  
+  .rounded-right {
+	border-top-right-radius: 4px !important;
+	border-bottom-right-radius: 4px !important;
+  }
+  
+  .rounded-bottom {
+	border-bottom-right-radius: 4px !important;
+	border-bottom-left-radius: 4px !important;
+  }
+  
+  .rounded-left {
+	border-top-left-radius: 4px !important;
+	border-bottom-left-radius: 4px !important;
+  }
+  
+  .rounded-circle {
+	border-radius: 50% !important;
+  }
+  
+  .rounded-0 {
+	border-radius: 0 !important;
+  }
+  
+  @media (max-width: 767px) {
+	.border-right-1 {
+	  border-right: 0 !important;
+	}
+  }
+  
+  .br-100 {
+	border-radius: 100% !important;
+  }
+  
+  .br-7 {
+	border-radius: 4px;
+  }
+  
+  .br-tl-7 {
+	border-top-left-radius: 4px !important;
+  }
+  
+  .br-bl-7 {
+	border-bottom-left-radius: 4px !important;
+  }
+  
+  .br-tr-7 {
+	border-top-right-radius: 4px !important;
+  }
+  
+  .br-br-7 {
+	border-bottom-right-radius: 4px !important;
+  }
+  
+  .br-tl-0 {
+	border-top-left-radius: 0px !important;
+  }
+  
+  .br-bl-0 {
+	border-bottom-left-radius: 0px !important;
+  }
+  
+  .br-tr-0 {
+	border-top-right-radius: 0px !important;
+  }
+  
+  .br-br-0 {
+	border-bottom-right-radius: 0px !important;
+  }
+  
+  .border-right-1 {
+	border-right: 1px solid #d5dce3;
+  }

@@ -1,0 +1,134 @@
+
+/*------------------------------------------------------------------
+[Master Stylesheet]
+
+Project        :   Dashmint – Bootstrap Responsive Flat Admin Dashboard HTML5 Template
+Version        :   V.1
+Create Date    :   20/03/20
+Copyright      :   Spruko Technologies Private Limited 
+Author         :   SprukoSoft
+Author URL     :   https://themeforest.net/user/sprukosoft
+Support		   :   support@spruko.com
+License        :   Licensed under ThemeForest License
+
+-------------------------------------------------------------------*/
+
+/* ------ Table Of Contents
+	* avatars
+	* calender
+	* custom-bootstrap
+	* custom-control
+	* custom-style
+	* date-picker
+	* email-services
+	* highlight
+	* jumbotron
+	* list
+	* media
+	* navs
+	* panels
+	* pricing-tables
+	* range-slider
+	* select2
+	* spinner
+	* tags
+	* timeline
+	* closed-sidemenu
+	* footer
+	* header
+	* horizontal-menu
+	* icon-sidemenu
+	* right-sidebar
+	* sidemenu
+	* sidemenu-responsive-tabs
+	* accordions
+	* alerts
+	* badges
+	* breadcrumbs
+	* buttons
+	* cards
+	* carousel
+	* dropdown
+	* forms
+	* grid
+	* input-group
+	* modals
+	* navigation
+	* pagination
+	* popover
+	* progress
+	* tables
+	* tooltip
+	* background
+	* borders
+	* height
+	* margin
+	* padding
+	* typography
+	* width
+	
+*/
+
+@import "custom/fonts/fonts";
+
+
+/* ########## CUSTOM ########## */
+@import "variables";
+
+
+@import "custom/avatar";
+@import "custom/calendar";
+@import "custom/custom-bootstrap";
+@import "custom/custom-control";
+@import "custom/custom-styles";
+@import "custom/date-picker";
+@import "custom/email-sevices";
+@import "custom/highlight";
+@import "custom/jumbotron";
+@import "custom/list";
+@import "custom/media";
+@import "custom/nav";
+@import "custom/panel";
+@import "custom/pricing-tables";
+@import "custom/range-slider";
+@import "custom/select2";
+@import "custom/spinner";
+@import "custom/tags";
+@import "custom/timeline";
+
+/* ########## LAYOUTS ########## */
+@import "layouts/footer";
+@import "layouts/header";
+@import "layouts/horizontal-menu";
+@import "layouts/right-sidebar";
+
+
+/* ############### TEMPLATE STYLES ############### */
+@import "template/accordion";
+@import "template/alerts";
+@import "template/badge";
+@import "template/breadcrumbs";
+@import "template/buttons";
+@import "template/cards";
+@import "template/carousel";
+@import "template/dropdown";
+@import "template/forms";
+@import "template/grid";
+@import "template/input-group";
+@import "template/modal";
+@import "template/navigation";
+@import "template/pagination";
+@import "template/popover";
+@import "template/progress";
+@import "template/table";
+@import "template/tooltip";
+
+/* ############### UTILITIES/HELPER CLASSES ############### */
+@import "util/background";
+@import "util/border";
+@import "util/height";
+@import "util/margin";
+@import "util/padding";
+@import "util/typography";
+@import "util/width";
+

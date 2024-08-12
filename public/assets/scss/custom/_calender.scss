@@ -1,0 +1,114 @@
+/* ###### Calender ###### */
+
+.cal1 {
+	.clndr {
+	  .clndr-table {
+		.header-days .header-day {
+		  border-left: 1px solid $border;
+		  border-top: 1px solid $border;
+		}
+  
+		tr {
+		  .empty, .adjacent-month, .my-empty, .my-adjacent-month {
+			border-left: 1px solid $border;
+			border-top: 1px solid $border;
+			background: rgba(236, 238, 249, 0.9);
+		  }
+  
+		  .day {
+			&.event, &.my-event {
+			  background: #f0f2fb;
+			}
+  
+			border-left: 1px solid $border;
+			border-top: 1px solid $border;
+  
+			&:last-child {
+			  border-right: 1px solid $border;
+			}
+  
+			&:hover {
+			  background: #fcfaff;
+			}
+		  }
+		}
+	  }
+  
+	  .clndr-controls .clndr-control-button {
+		.clndr-previous-button, .clndr-next-button {
+		  color: $white;
+		}
+	  }
+	}
+  
+	font-size: 14px;
+  }
+  
+  .calendar-title th {
+	background: rgba(236, 238, 249, 0.9) !important;
+	border: 1px solid $border !important;
+  }
+  
+  .calendar-header th {
+	border: 1px solid $border !important;
+  }
+  
+  .calendar tbody tr td {
+	border: 1px solid $border !important;
+  
+	&.today {
+	  background: rgba(236, 238, 249, 0.9) !important;
+	  color: $black;
+	}
+  }
+  
+  .cal1 .clndr .clndr-controls {
+	background: rgba(236, 238, 249, 0.9) !important;
+	border: 1px solid $border !important;
+  }
+  
+  .fc-unthemed {
+	.fc-content, .fc-divider, .fc-list-heading td, .fc-list-view, .fc-popover, .fc-row, tbody, td, th, thead {
+	  border-color: $border;
+	  z-index: 0;
+	}
+  }
+  
+  .fc-event, .fc-event-dot {
+	color: $border ! important;
+  }
+  
+  .fc-unthemed {
+	.fc-divider, .fc-list-heading td, .fc-popover .fc-header {
+	  background: #e2e3e4;
+	}
+  }
+  
+  .fc-toolbar {
+	.fc-state-active, .ui-state-active {
+	  background: #b4b4b4;
+	}
+  }
+  
+  .fc-today-button fc-button fc-state-default fc-corner-left fc-corner-right fc-state-disabled:focus {
+	border: none !important;
+	box-shadow: none !important;
+  }
+  
+  .fc-unthemed .fc-list-item:hover td {
+	background-color: #eef0fa;
+  }
+  
+  .cal1 .clndr .clndr-table tr {
+	.day {
+	  &.today:hover, &.my-today:hover {
+		background: #3d41e6;
+	  }
+	}
+  
+	.empty:hover, .adjacent-month:hover, .my-empty:hover, .my-adjacent-month:hover {
+	  background: #f2f7fa;
+	}
+  }
+  
+  /* ###### Calender ###### */

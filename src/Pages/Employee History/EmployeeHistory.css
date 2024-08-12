@@ -1,0 +1,20 @@
+profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th,
+.profile-table td {
+  padding: 10px;
+  text-align: left;
+  border: none;
+}
+
+.profile-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-table tbody tr:last-child {
+  border-bottom: none;
+}
+

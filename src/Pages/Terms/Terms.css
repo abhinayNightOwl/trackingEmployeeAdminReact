@@ -1,0 +1,81 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .page-main {
+    display: flex;
+    flex: 1;
+  }
+  
+  .app-content {
+    flex: 1;
+    padding: 50px;
+    overflow: auto;
+  }
+  
+  .section {
+    padding: 20px;
+    margin-top: -15px;
+  }
+  
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+  
+  .breadcrumb-item {
+    margin-right: 5px;
+  }
+  
+  .breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .breadcrumb-item.active {
+    color: #6c757d;
+  }
+  
+  .ml-auto {
+    margin-left: auto;
+  }
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  h4 {
+    margin-bottom: 15px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  .terms {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .terms a {
+    margin: 10px;
+  }
+
+  .terms-buttons {
+    gap: 5px;
+  }
+  

@@ -1,0 +1,55 @@
+@charset "UTF-8";
+/*Color variables*/
+/*border variables*/
+/*shadow variables*/
+/*------------------------------------------------------------------
+[Dark-Boxed Stylesheet]
+
+Project        :   Dashmint – Bootstrap Responsive Flat Admin Dashboard HTML5 Template
+Version        :   V.1
+Create Date    :   20/03/20
+Copyright      :   Spruko Technologies Private Limited 
+Author         :   SprukoSoft
+Author URL     :   https://themeforest.net/user/sprukosoft
+Support		   :   support@spruko.com
+License        :   Licensed under ThemeForest License
+
+-------------------------------------------------------------------*/
+@media (min-width: 1025px) {
+  .page {
+    max-width: 1170px;
+    margin: 0 auto;
+    background: #1d1f32;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    min-height: 100vh;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 0px 0px, rgba(0, 0, 0, 0.3) 0px 5px 25px 0px; }
+  body {
+    background: #3b3a5f   !important; }
+  .sticky-pin .horizontal-main {
+    max-width: 1170px; }
+  .header.top-header, .app-header {
+    max-width: 1170px;
+    margin: 0 auto; }
+  .horizontalMenu > .horizontalMenu-list > li:first-child a {
+    border-left: 0; }
+  .horizontalMenu > .horizontalMenu-list > li:last-child a {
+    border-right: 0 !important; }
+  .vh {
+    height: 100vh; }
+  .app-sidebar {
+    left: auto !important; }
+  .second-sidemenu {
+    left: auto !important;
+    margin-left: 63px; }
+  .side-header {
+    left: auto !important;
+    right: auto !important;
+    z-index: 1044; } }
+
+/*# sourceMappingURL=dark-boxed.css.map */

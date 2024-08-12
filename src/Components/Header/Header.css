@@ -1,0 +1,213 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  padding: 10px;
+  color: white;
+}
+
+.header-left .logo {
+  height: 40px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.user-profile .profile-pic {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+/* Modal styles */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure modal is on top of other content */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px; /* Increased width for the modal */
+  max-width: 90%; /* Limit maximum width to 90% of viewport */
+  position: relative;
+}
+
+.modal-content h2 {
+  margin-bottom: 10px;
+}
+
+.modal-content label {
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Header.css */
+.input-focused {
+  border: 2px solid #007bff;
+  outline: none;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="tel"] {
+  border: 1px solid #252323;
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: border 0.3s;
+}
+
+.modal-content input[type="text"]:focus,
+.modal-content input[type="email"]:focus,
+.modal-content input[type="tel"]:focus {
+  border: 2px solid #202020;
+}
+
+
+.mobile-input .phone-number {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-pic-upload {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.profile-pic-upload img {
+  width: 100px; /* Adjusted width for the profile picture */
+  height: 100px; /* Adjusted height for the profile picture */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.profile-pic-upload input[type="file"] {
+  margin-top: 10px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-buttons button:first-child {
+  background-color: #007bff; /* Blue color for Save Changes */
+  color: white;
+}
+
+.modal-buttons button:last-child {
+  background-color: #6c757d; /* Gray color for Cancel */
+  color: white;
+}
+
+/* Circular profile picture */
+.profile-pic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px; /* Added margin bottom to profile pic container */
+}
+
+.profile-pic-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+}
+
+.header .header-nav .icon {
+  margin-right: -5px; /* Adjust this value to reduce the gap */
+}
+
+.header .header-nav .header-right-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header .header-nav .header-user .profile-pic-container1 {
+  margin-left: 0; /* Adjust this value if needed */
+}
+
+.header .header-nav .dropdown {
+  margin-left: 0; /* Adjust this value to reduce the gap */
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 500px; /* Increased width for the modal */
+  max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-pic-upload {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic-upload img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.camera-icon {
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+  background: #007bff;
+  color: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-buttons button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.modal-buttons button:nth-child(2) {
+  background-color: #6c757d;
+}
+

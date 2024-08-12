@@ -1,0 +1,85 @@
+.page3 {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-main {
+  display: flex;
+  flex: 1;
+}
+
+.app-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.section {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.backward-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.sort-dropdown select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.profile-table th, .profile-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.profile-table th {
+  background-color: #f4f4f4;
+}
+.profile-table-container .table-wrapper {
+  margin-bottom: 30px; /* Adjust the margin as needed */
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #696868;
+  border: none;
+  border-radius: 5px;
+}
+
+.pagination button:disabled {
+  background-color: #0f0e0e;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  margin: 0 10px;
+}

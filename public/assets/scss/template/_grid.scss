@@ -1,0 +1,35 @@
+/* ###### Grid ###### */
+
+.row {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -0.25rem;
+	margin-left: -0.25rem;
+  }
+  
+  .row-cards > {
+	.col, [class*='col-'] {
+	  display: -ms-flexbox;
+	  display: flex;
+	  -ms-flex-direction: column;
+	  flex-direction: column;
+	}
+  }
+  
+  .row-deck > {
+	.col, [class*='col-'] {
+	  display: -ms-flexbox;
+	  display: flex;
+	  -ms-flex-align: stretch;
+	  align-items: stretch;
+	}
+  
+	.col .card, [class*='col-'] .card {
+	  -ms-flex: 1 1 auto;
+	  flex: 1 1 auto;
+	}
+  }
+  
+  /* ###### Grid ###### */
