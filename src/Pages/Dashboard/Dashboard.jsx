@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate} from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 import "./Dashboard.css";
 import Header from "../../Components/Header/Header";
@@ -11,13 +11,13 @@ const Dashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
   const [totalEmployees, setTotalEmployees] = useState([]);
-  const [totalUser,setTotalUser]=useState(null)
+  const [totalUser, setTotalUser] = useState(null);
   const [displayedEmployees, setDisplayedEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [selectedEmployeeLocation, setSelectedEmployeeLocation] =
     useState(null);
-const navigate=useNavigate()
+  const navigate = useNavigate();
   const fetchEmployees = async () => {
     const jwtToken = localStorage.getItem("jwtToken");
     if (!jwtToken) {
@@ -44,9 +44,9 @@ const navigate=useNavigate()
       const data = await response.json();
       console.log("Fetched employees:", data);
       setTotalEmployees(data.result.user);
-      setDisplayedEmployees(data.result.user)
-      setTotalUser(data.result.tottalUser)
-      console.log(totalEmployees)
+      setDisplayedEmployees(data.result.user);
+      setTotalUser(data.result.tottalUser);
+      console.log(totalEmployees);
       setLoading(false);
     } catch (error) {
       console.error("Error:", error.message);
@@ -79,16 +79,24 @@ const navigate=useNavigate()
 
       const locationData = await response.json();
 
-      console.log("Fetched location:", locationData.result.punchOut.longitude);
+      // console.log("Fetched location:", locationData.result.punchOut.longitude);
       if (
-        !locationData.result.punchOut.latitude ||
-        !locationData.result.punchOut.longitude
+        !locationData.result.punchOut?.latitude ||
+         !locationData.result.punchOut?.longitude ||
+        !locationData.result.punchIn?.latitude||
+        !locationData.result.punchIn?.longitude
       ) {
         throw new Error("Invalid location data received");
       }
-
-      const { latitude, longitude } = locationData.result.punchOut;
-      navigate(`/location/${latitude}/${longitude}`);
+      if (locationData.result.punchOut) {
+        console.log("if", locationData.result.punchOut);
+        const { latitude, longitude,address } = locationData.result.punchOut;
+        navigate(`/location/${latitude}/${longitude}/${address}`);
+      } else {
+        console.log("else", locationData.result.punchIn);
+        const { latitude, longitude,address } = locationData.result.punchIn;
+        navigate(`/location/${latitude}/${longitude}/${address}`);
+      }
       // setSelectedEmployeeLocation({ latitude, longitude });
     } catch (error) {
       console.error("Error fetching location:", error.message);
@@ -98,18 +106,16 @@ const navigate=useNavigate()
 
   useEffect(() => {
     fetchEmployees();
-
   }, [currentPage]);
 
   useEffect(() => {
     // const calculateDisplayedEmployees = () => {
-      // const startIndex = (currentPage - 1) * itemsPerPage;
-      // const endIndex = startIndex + itemsPerPage;
-      // setDisplayedEmployees(totalEmployees.slice(startIndex, endIndex));
+    // const startIndex = (currentPage - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // setDisplayedEmployees(totalEmployees.slice(startIndex, endIndex));
     // };
-
     // if (totalEmployees.length > 0) {
-      // calculateDisplayedEmployees();
+    // calculateDisplayedEmployees();
     // }
   }, [currentPage, totalEmployees]);
 
@@ -126,13 +132,13 @@ const navigate=useNavigate()
   };
 
   const goToPreviousPage = () => {
-    setCurrentPage(currentPage-1);
+    setCurrentPage(currentPage - 1);
   };
 
   const goToNextPage = () => {
-    console.log("next")
-    setCurrentPage(currentPage+1)
-      // Math.min(prevPage + 1, Math.ceil(totalEmployees.length / itemsPerPage))
+    console.log("next");
+    setCurrentPage(currentPage + 1);
+    // Math.min(prevPage + 1, Math.ceil(totalEmployees.length / itemsPerPage))
     // );
   };
 
@@ -148,7 +154,6 @@ const navigate=useNavigate()
 
   return (
     <>
-    
       <div className="page">
         <Header />
         <Sidebar />
@@ -204,7 +209,7 @@ const navigate=useNavigate()
                 Previous
               </button>
               {/* {Array.from({ length: totalPages }, (_, index) => ( */}
-                {/* <button
+              {/* <button
                   key={index}
                   onClick={() => handlePageChange(index + 1)}
                   className={currentPage === index + 1 ? "active" : ""}
@@ -215,7 +220,7 @@ const navigate=useNavigate()
               {currentPage}
               <button
                 onClick={goToNextPage}
-                disabled={(currentPage*10) === totalUser}
+                disabled={currentPage * 10 === totalUser}
               >
                 Next
               </button>
@@ -226,31 +231,31 @@ const navigate=useNavigate()
                 Last
               </button>
             </div>
-            {selectedEmployeeLocation && (
-              <div style={{ height: "400px", width: "100%" }}>
-                <MapContainer
-                  center={[
-                    selectedEmployeeLocation.latitude,
-                    selectedEmployeeLocation.longitude,
-                  ]}
-                  zoom={15}
-                  style={{ height: "100%", width: "100%" }}
-                >
-                  <TileLayer
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                  />
-                  <Marker
-                    position={[
-                      selectedEmployeeLocation.latitude,
-                      selectedEmployeeLocation.longitude,
-                    ]}
-                  >
-                    <Popup>Employee Location</Popup>
-                  </Marker>
-                </MapContainer>
-              </div>
-            )}
+            {/* {selectedEmployeeLocation && (
+              // <div style={{ height: "400px", width: "100%" }}>
+              //   <MapContainer
+              //     center={[
+              //       selectedEmployeeLocation.latitude,
+              //       selectedEmployeeLocation.longitude,
+              //     ]}
+              //     zoom={15}
+              //     style={{ height: "100%", width: "100%" }}
+              //   >
+              //     <TileLayer
+              //       attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              //       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              //     />
+              //     <Marker
+              //       position={[
+              //         selectedEmployeeLocation.latitude,
+              //         selectedEmployeeLocation.longitude,
+              //       ]}
+              //     >
+              //       <Popup>Employee Location</Popup>
+              //     </Marker>
+              //   </MapContainer>
+              // </div>
+            )} */}
           </div>
         </div>
       </div>

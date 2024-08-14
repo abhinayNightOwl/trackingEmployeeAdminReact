@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" Component={Login} />
           <Route path="/dashboard" Component={Dashboard} />
-          <Route path="/location/:latitude/:longitude" element={<EmployeeLocation />} />
+          <Route path="/location/:latitude/:longitude/:address" element={<EmployeeLocation />} />
           <Route path="/employee-history" Component={EmployeeHistory} />
           <Route path="/employee-leave" Component={EmployeeLeaveHistory} />
           <Route path="/employee-leave-profile/:employeeId" element={<EmployeeLeaveProfile />} />
