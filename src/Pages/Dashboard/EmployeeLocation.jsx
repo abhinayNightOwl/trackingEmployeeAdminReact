@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -32,16 +32,17 @@ const EmployeeLocation = () => {
     lng: 77.209,
   };
 
-  const directionsCallback = useCallback((result, status) => {
-    if (status === "ok") {
-      console.log();
+  const directionsCallback = (result, status) => {
+    console.log("calbacke=",response?.status)
+    if (status === "OK" && result?.status !==response?.status) {
+      console.log("hii");
       setResponse(result);
     } else {
       console.log("Error fetching direction");
     }
-  }, []);
+  };
 
-  const fetchEmployeeLocation = async () => {
+  const fetchEmployeeLocation = useCallback(async () => {
     try {
       console.log("fetchEmp");
       const jwtToken = localStorage.getItem("jwtToken");
@@ -79,10 +80,31 @@ const EmployeeLocation = () => {
         console.log("if", locationData.result.punchOut);
         setPunchOut(locationData.result.punchOut);
       }
-      if (locationData.result?.intermediateLocations)
-        setIntermediateLocation([
-          ...locationData.result?.intermediateLocations,
-        ]);
+      if (locationData.result?.intermediateLocations){
+        /*  waypoints: [
+          {
+            location: { lat: 28.5355, lng: 77.3910 }, // Noida
+            stopover: true,
+          },
+          {
+            location: { lat: 28.4089, lng: 77.3178 }, // Faridabad
+            stopover: true,
+          },
+        ],*/
+        const temp=locationData?.result?.intermediateLocations?.map((location)=>{
+              return ({
+                location: { lat: +location.latitude, lng: +location.longitude }, // Noida
+                stopover: true,
+              })
+        })
+           
+       console.log("temp=",temp)
+
+        setIntermediateLocation(
+          [...temp]
+      );
+      }
+
       if (locationData.result?.punchIn) {
         console.log("else", locationData.result.punchIn);
         setPunchIn(locationData.result.punchIn);
@@ -91,11 +113,11 @@ const EmployeeLocation = () => {
       console.error("Error fetching location:", error.message);
       alert(`Error fetching location: ${error.message}`);
     }
-  };
+  },[employeeId]);
 
   useEffect(() => {
     fetchEmployeeLocation();
-  }, [employeeId]);
+  }, [fetchEmployeeLocation]);
   return (
     <div style={{ height: "100px", width: "100%" }}>
       {console.log(intermediateLocation[0]?.latitude)}
@@ -109,10 +131,12 @@ const EmployeeLocation = () => {
           >
             <MarkerF
               position={{ lat: +punchIn.latitude, lng: +punchIn.longitude }}
+              // onClick={()=>setIsActive(true)}
             >
               {
                 <InfoWindow
                   position={{ lat: +punchIn.latitude, lng: +punchIn.longitude }}
+                  onCloseClick={()=>setIsActive(false)}
                 >
                   <div>
                     <h4>Login</h4>
@@ -134,18 +158,19 @@ const EmployeeLocation = () => {
                 </div>
               </InfoWindow>
             </MarkerF>
-
+{console.log("hello",+punchOut.latitude,+punchOut.longitude)}
             <DirectionsService
               options={{
                 origin: { 
                   lat: +punchIn.latitude, 
-                  lng: +punchIn.longitude 
+                  lng:  +punchIn.longitude 
                 },
                 destination: {
                   lat: +punchOut.latitude,
                   lng: +punchOut.longitude,
                 },
-                travelMode: "driving",
+                travelMode: "DRIVING",
+                waypoints:intermediateLocation,
               }}
               callback={directionsCallback}
             />
@@ -163,4 +188,17 @@ const EmployeeLocation = () => {
     </div>
   );
 };
+
+
+
+// const setDirectionServices=()=>{
+//   return (
+//     <h1>hello</h1>
+//   )
+// }
+
+
+
 export default EmployeeLocation;
+
+
