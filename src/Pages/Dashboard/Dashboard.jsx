@@ -55,55 +55,59 @@ const Dashboard = () => {
     }
   };
 
-  const fetchEmployeeLocation = async (employeeId) => {
-    try {
-      const jwtToken = localStorage.getItem("jwtToken");
-      if (!jwtToken) {
-        throw new Error("No JWT token found");
-      }
+  // const fetchEmployeeLocation = async (employeeId) => {
+  //   try {
+  //     const jwtToken = localStorage.getItem("jwtToken");
+  //     if (!jwtToken) {
+  //       throw new Error("No JWT token found");
+  //     }
 
-      const response = await fetch(
-        `https://employee-attendance-dr6b.onrender.com/admin/attendance/${employeeId}/letest`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${jwtToken}`,
-          },
-        }
-      );
+  //     const response = await fetch(
+  //       `https://employee-attendance-dr6b.onrender.com/admin/attendance/${employeeId}/letest`,
+  //       {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${jwtToken}`,
+  //         },
+  //       }
+  //     );
 
-      if (!response.ok) {
-        throw new Error(`Failed to fetch location: ${response.status}`);
-      }
+  //     if (!response.ok) {
+  //       throw new Error(`Failed to fetch location: ${response.status}`);
+  //     }
 
-      const locationData = await response.json();
+  //     const locationData = await response.json();
 
-      // console.log("Fetched location:", locationData.result.punchOut.longitude);
-      if (
-        !locationData.result.punchOut?.latitude ||
-         !locationData.result.punchOut?.longitude ||
-        !locationData.result.punchIn?.latitude||
-        !locationData.result.punchIn?.longitude
-      ) {
-        throw new Error("Invalid location data received");
-      }
-      if (locationData.result.punchOut) {
-        console.log("if", locationData.result.punchOut);
-        const { latitude, longitude,address } = locationData.result.punchOut;
-        navigate(`/location/${latitude}/${longitude}/${address}`);
-      } else {
-        console.log("else", locationData.result.punchIn);
-        const { latitude, longitude,address } = locationData.result.punchIn;
-        navigate(`/location/${latitude}/${longitude}/${address}`);
-      }
-      // setSelectedEmployeeLocation({ latitude, longitude });
-    } catch (error) {
-      console.error("Error fetching location:", error.message);
-      alert(`Error fetching location: ${error.message}`);
-    }
-  };
+  //     // console.log("Fetched location:", locationData.result.punchOut.longitude);
+  //     if (
+  //       !locationData.result.punchOut?.latitude ||
+  //        !locationData.result.punchOut?.longitude ||
+  //       !locationData.result.punchIn?.latitude||
+  //       !locationData.result.punchIn?.longitude
+  //     ) {
+  //       throw new Error("Invalid location data received");
+  //     }
+  //     if (locationData.result.punchOut) {
+  //       console.log("if", locationData.result.punchOut);
+  //       const { latitude, longitude,address } = locationData.result.punchOut;
+  //       navigate(`/location/${latitude}/${longitude}/${address}`);
+  //     } else {
+  //       console.log("else", locationData.result.punchIn);
+  //       const { latitude, longitude,address } = locationData.result.punchIn;
+  //       navigate(`/location/${latitude}/${longitude}/${address}`);
+  //     }
+  //     // setSelectedEmployeeLocation({ latitude, longitude });
+  //   } catch (error) {
+  //     console.error("Error fetching location:", error.message);
+  //     alert(`Error fetching location: ${error.message}`);
+  //   }
+  // };
 
+  const handleViewLocation=(employeeId)=>{
+    navigate(`/location/${employeeId}`);
+  }
+  
   useEffect(() => {
     fetchEmployees();
   }, [currentPage]);
@@ -191,7 +195,7 @@ const Dashboard = () => {
                       <td>{employee.employeeId}</td>
                       <td>
                         <button
-                          onClick={() => fetchEmployeeLocation(employee._id)}
+                          onClick={() => handleViewLocation(employee._id)}
                         >
                           View Location
                         </button>
