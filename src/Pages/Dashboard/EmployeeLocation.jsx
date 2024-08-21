@@ -120,7 +120,6 @@ const EmployeeLocation = () => {
   }, [fetchEmployeeLocation]);
   return (
     <div style={{ height: "100px", width: "100%" }}>
-      {console.log(intermediateLocation[0]?.latitude)}
       <LoadScript googleMapsApiKey="AIzaSyCuiLwZPOiKry-Ar28rhQpKNnvk2TFB1nw">
         {/* AIzaSyD9gKc0JPGDNBNMpmRFIw4zDSN4dFIspno */}
         {punchIn && (
