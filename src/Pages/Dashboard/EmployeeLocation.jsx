@@ -1,11 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import // APIProvider,
-// Map,
-// Marker,
-// InfoWindow,
-// DirectionsRenderer,
-// DirectionsService
-"@vis.gl/react-google-maps";
+
 import {
   GoogleMap,
   LoadScript,
