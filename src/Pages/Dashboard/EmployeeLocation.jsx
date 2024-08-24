@@ -1,4 +1,11 @@
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import // APIProvider,
+// Map,
+// Marker,
+// InfoWindow,
+// DirectionsRenderer,
+// DirectionsService
+"@vis.gl/react-google-maps";
 import {
   GoogleMap,
   LoadScript,
@@ -13,10 +20,11 @@ import { useParams } from "react-router-dom";
 
 const EmployeeLocation = () => {
   const { employeeId } = useParams();
-  const [isActive, setIsActive] = useState(null);
   const [punchIn, setPunchIn] = useState({});
+  const [selectMarker, setSelectMarker] = useState(null);
   const [punchOut, setPunchOut] = useState({});
   const [response, setResponse] = useState(null);
+  const [attendance, setAttendance] = useState([]);
   const [intermediateLocation, setIntermediateLocation] = useState([]);
   const mapStyles = {
     height: "100vh",
@@ -33,8 +41,8 @@ const EmployeeLocation = () => {
   };
 
   const directionsCallback = (result, status) => {
-    console.log("calbacke=",response?.status)
-    if (status === "OK" && result?.status !==response?.status) {
+    console.log("calbacke=", response?.status);
+    if (status === "OK" && result?.status !== response?.status) {
       console.log("hii");
       setResponse(result);
     } else {
@@ -67,128 +75,162 @@ const EmployeeLocation = () => {
 
       const locationData = await response.json();
 
-      console.log("Fetched location:", locationData.result.punchOut.longitude);
       if (
-        !locationData.result.punchOut?.latitude ||
-        !locationData.result.punchOut?.longitude ||
         !locationData.result.punchIn?.latitude ||
         !locationData.result.punchIn?.longitude
       ) {
         throw new Error("Invalid location data received");
       }
+
+      if (locationData.result?.punchIn) {
+        const t = [...attendance, locationData.result.punchIn];
+        console.log("else", locationData.result.punchIn);
+        setPunchIn(locationData.result.punchIn);
+        console.log("heeeeeeee", [...attendance, locationData.result.punchIn]);
+        setAttendance((attendance) => [...attendance, ...t]);
+      }
+
+      if (locationData.result?.intermediateLocations) {
+        console.log(
+          "intermediateLocations",
+          locationData.result.intermediateLocations
+        );
+        const temp = locationData?.result?.intermediateLocations?.map(
+          (location) => {
+            return {
+              location: { lat: +location.latitude, lng: +location.longitude }, // Noida
+              stopover: true,
+            };
+          }
+        );
+
+        console.log("temp=", temp);
+        setAttendance((attendance) => [...attendance, ...temp]);
+        setIntermediateLocation([...temp]);
+      }
+
       if (locationData.result?.punchOut) {
         console.log("if", locationData.result.punchOut);
         setPunchOut(locationData.result.punchOut);
-      }
-      if (locationData.result?.intermediateLocations){
-        /*  waypoints: [
-          {
-            location: { lat: 28.5355, lng: 77.3910 }, // Noida
-            stopover: true,
-          },
-          {
-            location: { lat: 28.4089, lng: 77.3178 }, // Faridabad
-            stopover: true,
-          },
-        ],*/
-        const temp=locationData?.result?.intermediateLocations?.map((location)=>{
-              return ({
-                location: { lat: +location.latitude, lng: +location.longitude }, // Noida
-                stopover: true,
-              })
-        })
-           
-       console.log("temp=",temp)
-
-        setIntermediateLocation(
-          [...temp]
-      );
-      }
-
-      if (locationData.result?.punchIn) {
-        console.log("else", locationData.result.punchIn);
-        setPunchIn(locationData.result.punchIn);
+        const t = [...attendance, locationData.result.punchOut];
+        console.log("tttttttt=", t);
+        setAttendance((attendance) => [...attendance, ...t]);
       }
     } catch (error) {
       console.error("Error fetching location:", error.message);
       alert(`Error fetching location: ${error.message}`);
     }
-  },[employeeId]);
+  }, [employeeId]);
+
+  const handleMarkerClick = (marker) => {
+    console.log(marker);
+    setSelectMarker(marker);
+  };
 
   useEffect(() => {
     fetchEmployeeLocation();
   }, [fetchEmployeeLocation]);
+
+
+  console.log("final=", attendance);
   return (
     <div style={{ height: "100px", width: "100%" }}>
       <LoadScript googleMapsApiKey="AIzaSyCuiLwZPOiKry-Ar28rhQpKNnvk2TFB1nw">
-        {/* AIzaSyD9gKc0JPGDNBNMpmRFIw4zDSN4dFIspno */}
-        {punchIn && (
+        {
           <GoogleMap
+            //  onLoad={(map) => (mapRef.current = map)}
             mapContainerStyle={mapStyles}
             zoom={13}
             center={defaultCenter}
           >
-            <MarkerF
-              position={{ lat: +punchIn.latitude, lng: +punchIn.longitude }}
-              // onClick={()=>setIsActive(true)}
-            >
-              {
-                <InfoWindow
-                  position={{ lat: +punchIn.latitude, lng: +punchIn.longitude }}
-                  onCloseClick={()=>setIsActive(false)}
-                >
-                  <div>
-                    <h4>Login</h4>
-                    <h4>Address: {punchIn?.address}</h4>
-                  </div>
-                </InfoWindow>
-              }
-            </MarkerF>
+            {/*attendance.map((marker, index) => {
+              console.log("marker=", marker);
+              return (
+                <div>
+                  <MarkerF
+                    key={marker._id}
+                    position={{ lat: +marker.latitude, lng: +marker.longitude }}
+                    onClick={() => setSelectMarker(marker)}
+                  ></MarkerF>
 
-            <MarkerF
-              position={{ lat: +punchOut.latitude, lng: +punchOut.longitude }}
-            >
+                  {/* <InfoWindow
+                    position={{ lat: +marker.latitude, lng: +marker.longitude }}
+                  >
+                    <div>
+                      <h4>Logout</h4>
+                      <h4>Address: {marker?.address}</h4>
+                    </div>
+                  </InfoWindow> 
+                </div>
+              );
+            })*/}
+
+            {/* {selectMarker && (
               <InfoWindow
-                position={{ lat: +punchOut.latitude, lng: +punchOut.longitude }}
+                position={{
+                  lat: +selectMarker.latitude,
+                  lng: +selectMarker.longitude,
+                }}
+                onCloseClick={() => setSelectMarker(null)}
               >
                 <div>
                   <h4>Logout</h4>
-                  <h4>Address: {punchOut?.address}</h4>
+                  <h4>Address: {selectMarker?.address}</h4>
                 </div>
               </InfoWindow>
-            </MarkerF>
-{console.log("hello",+punchOut.latitude,+punchOut.longitude)}
-            <DirectionsService
-              options={{
-                origin: { 
-                  lat: +punchIn.latitude, 
-                  lng:  +punchIn.longitude 
-                },
-                destination: {
-                  lat: +punchOut.latitude,
-                  lng: +punchOut.longitude,
-                },
-                travelMode: "DRIVING",
-                waypoints:intermediateLocation,
-              }}
-              callback={directionsCallback}
-            />
-          {response !== null && (
-            <DirectionsRenderer
-              options={{
-                directions: response,
-              }}
-            />
-          )
-        }
+            )} */}
+
+            {attendance.length > 2 ? (
+              <DirectionsService
+                options={{
+                  origin: {
+                    lat: +attendance[0]?.latitude,
+                    lng: +attendance[0]?.longitude,
+                  },
+                  destination: {
+                    lat: +attendance[attendance.length - 1]?.latitude,
+                    lng: +attendance[attendance.length - 1]?.longitude,
+                  },
+                  travelMode: "DRIVING",
+                  waypoints: intermediateLocation,
+                }}
+                callback={directionsCallback}
+              />
+            ) : (
+              <MarkerF
+                position={{
+                  lat: +attendance[0]?.latitude,
+                  lng: +attendance[0]?.longitude,
+                }}
+                onClick={() => setSelectMarker(attendance)}
+              >
+                <InfoWindow
+                  position={{
+                    lat: +attendance[0]?.latitude,
+                    lng: +attendance[0]?.longitude,
+                  }}
+                  onCloseClick={() => setSelectMarker(null)}
+                >
+                  <div>
+                    <h4>Address: {attendance[0]?.address}</h4>
+                  </div>
+                </InfoWindow>
+              </MarkerF>
+            )}
+            {response !== null && (
+              <DirectionsRenderer
+                options={{
+                  directions: response,
+                }}
+              />
+            )}
           </GoogleMap>
-        )}
+        }
       </LoadScript>
     </div>
   );
+
 };
-
-
 
 // const setDirectionServices=()=>{
 //   return (
@@ -196,8 +238,4 @@ const EmployeeLocation = () => {
 //   )
 // }
 
-
-
 export default EmployeeLocation;
-
-
