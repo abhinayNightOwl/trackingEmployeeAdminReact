@@ -174,7 +174,7 @@ const EmployeeLocation = () => {
               </InfoWindow>
             )} */}
 
-            {attendance.length > 2 ? (
+            {attendance.length > 1 ? (
               <DirectionsService
                 options={{
                   origin: {
