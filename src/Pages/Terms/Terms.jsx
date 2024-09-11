@@ -34,11 +34,11 @@ const Terms = () => {
                 <div className="card">
                   <div className="card-body">
                     <h4>
-                      <b>Welcome to ABC</b>
+                      <b>Welcome to Habib</b>
                     </h4>
                     <p>
-                    ABC is an innovative employee tracking system designed to streamline workforce management and enhance productivity. 
-                    By leveraging cutting-edge technology, ABC provides real-time tracking of employee locations, enabling organizations 
+                    Habib is an innovative employee tracking system designed to streamline workforce management and enhance productivity. 
+                    By leveraging cutting-edge technology, Habib provides real-time tracking of employee locations, enabling organizations 
                     to monitor attendance, optimize resource allocation, and ensure workplace safety. This system is particularly 
                     beneficial for businesses with remote or field-based staff, offering detailed insights and analytics to support 
                     efficient decision-making. With ABC, companies can maintain transparency, improve operational efficiency, and foster 
@@ -68,10 +68,10 @@ const Terms = () => {
                       <b>Privacy policy</b>
                     </h4>
                     <p>
-                    We prioritize protecting and securing your information on Reelee. 
-                    Unauthorized access to any part of Reelee is not permitted. 
-                    Additionally, attempts to obtain sensitive, confidential, commercial, or personal information, 
-                    as well as any abuse of the platform's security, integrity, or reliability, are strictly prohibited.
+                    This Tracking System is designed to enhance productivity and ensure the safety of our workforce. By using this system, employees acknowledge and consent 
+                    that the company reserves the right to track and monitor their location during working hours.
+                    This information may be shared with relevant parties within the organization to ensure operational efficiency and compliance with company policies.
+                    Our commitment to transparency and data security remains paramount as we utilize this technology for the benefit of all stakeholders.
                     </p>
                   </div>
                 </div>
@@ -83,13 +83,11 @@ const Terms = () => {
                       <b>Copyright</b>
                     </h4>
                     <p>
-                    Reelee's copyright policy is designed to protect the intellectual property rights of creators while maintaining a vibrant, 
-                    creative community. The platform requires users to ensure that they have the necessary rights to any content they 
-                    upload,including music, video clips, and images, prohibiting the sharing of copyrighted material without permission. 
-                    When copyright infringement is reported through a valid Digital Millennium Copyright Act (DMCA) notice, Reelee removes the infringing content and may suspend or terminate repeat offenders' accounts. 
-                    The policy also allows for counter-notices, enabling users to dispute removals they believe were made in error, typically by demonstrating that their use of the content was authorized or falls under fair use. 
-                    To support compliance, Reelee offers a library of licensed music and sound clips, along with educational resources to help users understand copyright laws. By balancing protection with access, 
-                    Reelee aims to respect creators' rights while fostering an environment where users can creatively express themselves within legal bounds.
+                     This Employee Tracking System is the exclusive property of Habib. 
+                     All rights reserved. Unauthorized reproduction, distribution, or use of this software, 
+                     in whole or in part, is strictly prohibited. The software has been designed and 
+                     developed by Greenusys Technology Pvt Ltd. 
+                     For any inquiries, please contact Habib directly.
                     </p>
                   </div>
                 </div>
@@ -128,3 +126,5 @@ const Terms = () => {
   );
 }
 export default Terms;
+
+
